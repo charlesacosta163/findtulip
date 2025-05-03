@@ -2,16 +2,27 @@ import React from 'react'
 
 import { getAllListings } from '@/lib/actions';
 import ListItem from '@/components/list-item';
+import FilterListingForm from '@/components/filterlistingform';
+const ListingsPage = async ({searchParams}: {searchParams: Promise<{filter: string}>}) => {
+    const {filter} = await searchParams;
+    
+    let listings;
 
-const ListingsPage = async () => {
-    const listings = await getAllListings() || [];
+    if (filter) 
+        listings = await getAllListings(filter) || [];
+
+    else
+        listings = await getAllListings() || [];
 
   return (
-    <div className='self-start justify-start w-full'>
+    <div className='flex flex-col gap-8 self-start justify-start w-full'>
         
-        <h1 className='text-4xl text-gray-700 font-bold tracking-tight'>All Listings</h1>
+        <div className='flex sm:justify-start justify-between items-center sm:gap-8 gap-4'>
+            <h1 className='text-4xl text-gray-700 font-bold tracking-tight'>All Listings</h1>
+            <FilterListingForm />
+        </div>
 
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {
                 listings?.length > 0 ?
                 listings?.map(e => <ListItem 

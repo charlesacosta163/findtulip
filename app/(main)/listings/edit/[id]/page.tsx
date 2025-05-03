@@ -27,7 +27,6 @@ const UpdateListingPage = async ({
     .single();
 
     if(error) {
-        console.error(error);
         return <div>Error loading listing</div>;
     }
 

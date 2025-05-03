@@ -17,7 +17,6 @@ const ProfilePage = async () => {
 
   const userListings = await getListingsByUser(user?.email as string) || [];
 
-  console.log(userListings);
   return (
     <div className="self-start max-w-[800px] w-full flex flex-col gap-8">
       <section>
