@@ -47,10 +47,7 @@ export async function getListingsByUser(email: string) {
     return userListings
 }
 export async function getAListing(id: number) {
-  const session = await auth();
-  if (!session) {
-    redirect("/signin");
-  }
+  
     let { data: listing, error } = await supabase
     .from('listings')
     .select('*')

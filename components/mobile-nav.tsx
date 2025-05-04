@@ -7,6 +7,7 @@ import { FaTimes, FaUserCircle } from "react-icons/fa";
 import { FaRegRectangleList } from "react-icons/fa6";
 import Image from "next/image";
 import { TbPencilSearch } from "react-icons/tb";
+import { LuLogIn } from "react-icons/lu";
 const MobileNav = ({
   avatar,
   username,
@@ -37,6 +38,9 @@ const MobileNav = ({
 
       {isOpen && (
         <div className="absolute top-12 right-0 w-[250px] text-sm font-medium  bg-[#FAF6E9] shadow-md rounded-lg p-4">
+
+        { avatar && username ? (
+          <>
           <div className="flex gap-2 items-center">
             <Image
               src={avatar}
@@ -47,6 +51,13 @@ const MobileNav = ({
             />
             <span className="text-wrap font-bold">{username}</span>
           </div>
+          </>
+        ) : (
+          <Link href="/signin" className="flex items-center gap-2 px-4 py-2 hover:bg-[#e9e4d1] rounded-full">
+            <LuLogIn className="text-lg" />
+            Sign in
+          </Link>
+        )}
           
           <div className="flex flex-col gap-2 mt-4">
           <Link

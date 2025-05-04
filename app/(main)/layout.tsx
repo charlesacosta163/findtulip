@@ -8,16 +8,12 @@ export default async function RootLayout({
   }: Readonly<{
     children: React.ReactNode;
   }>) {
-    const session = await auth();
-
-    if (!session) {
-      redirect("/signin");
-    }
+    const session = await auth() || null;
 
     return (
       <div className="min-h-screen max-w-[1200px] w-full flex flex-col mx-auto">
 
-        <Navbar avatar={session.user?.image as string} username={session.user?.name as string} />
+        <Navbar avatar={session?.user?.image as string} username={session?.user?.name as string} />
 
         <main className="flex-1 w-full p-4 flex items-center justify-center">
             {children}
